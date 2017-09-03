@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplosionScript : MonoBehaviour {
     public float ExpandSpeed = 1f;
     public float MaxScale = 0.5f;
+    private int damage;
 	// Use this for initialization
 	void Start () {	
 	}
@@ -27,7 +28,12 @@ public class ExplosionScript : MonoBehaviour {
     {
         if (col.gameObject.name == "Mob(Clone)")
         {
-            Destroy(col.gameObject);
+            col.GetComponent<mobScript>().TakeDamage(damage);
         }
+    }
+
+    public void SetDamage ( int newDamage )
+    {
+        damage = newDamage;
     }
 }

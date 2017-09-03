@@ -4,6 +4,7 @@ using System.Collections;
 public class TowerScript : MonoBehaviour {
 	public GameObject VisionArea;
 	public GameObject missile;
+    private int missileDamage = 1;
 	// Use this for initialization
 	void Start () {
 	
@@ -17,6 +18,7 @@ public class TowerScript : MonoBehaviour {
     void FireAt(GameObject target)
     {
         GameObject newMissile = Instantiate(missile, transform.position, Quaternion.LookRotation(target.transform.position - transform.position)) as GameObject;
+        newMissile.GetComponent<MissileScript>().setDamage(missileDamage);
         newMissile.GetComponent<MissileScript>().targetPos = target.transform.position;
     }
 
