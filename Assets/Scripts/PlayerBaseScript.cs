@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBaseScript : MonoBehaviour {
     public int health = 50;
-
+    public GameObject LevelController;
 	// Use this for initialization
 	void Start () {
 		
@@ -21,6 +21,10 @@ public class PlayerBaseScript : MonoBehaviour {
     void BaseDestroyed ()
     {
         // Insert game over call here!!!
+        if (LevelController != null)
+        {
+            LevelController.GetComponent<LevelScript>().SetGameOver(true);
+        }
         Destroy(this.gameObject);
     }
 
