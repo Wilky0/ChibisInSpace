@@ -108,6 +108,11 @@ NavMeshSettings:
     tileSize: 256
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &667222161 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1769041125853554, guid: 0f5ac663777d38341a6e9bde58f0ff34,
+    type: 2}
+  m_PrefabInternal: {fileID: 856343159}
 --- !u!1001 &856343159
 Prefab:
   m_ObjectHideFlags: 0
@@ -289,6 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c74edc1288062914897550926cf1ba29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerBase: {fileID: 667222161}
 --- !u!4 &1473531678
 Transform:
   m_ObjectHideFlags: 0
@@ -330,7 +336,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MobObject: {fileID: 121476, guid: d4fe6fc995d297648bb6a5e5d72295c3, type: 2}
+  LevelController: {fileID: 1473531676}
   timerReset: 100
+  ScreenSideBuffer: 1
+  ScreenTopBuffer: 1
 --- !u!4 &1855924132
 Transform:
   m_ObjectHideFlags: 0
