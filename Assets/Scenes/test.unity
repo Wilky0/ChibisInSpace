@@ -162,6 +162,10 @@ Prefab:
       propertyPath: LevelController
       value: 
       objectReference: {fileID: 1473531676}
+    - target: {fileID: 1769041125853554, guid: 0f5ac663777d38341a6e9bde58f0ff34, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0f5ac663777d38341a6e9bde58f0ff34, type: 2}
   m_IsPrefabParent: 0
@@ -337,6 +341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MobObject: {fileID: 121476, guid: d4fe6fc995d297648bb6a5e5d72295c3, type: 2}
   LevelController: {fileID: 1473531676}
+  playerBase: {fileID: 1769041125853554, guid: 0f5ac663777d38341a6e9bde58f0ff34, type: 2}
   timerReset: 100
   ScreenSideBuffer: 1
   ScreenTopBuffer: 1

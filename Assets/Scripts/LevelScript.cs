@@ -8,10 +8,12 @@ public class LevelScript : MonoBehaviour {
     private float screenLeft;
     private float screenRight;
     private float screenTop;
+    private float screenBottom;
 	// Use this for initialization
 	void Start () {
         Vector3 p = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane));
         screenLeft = p.x;
+        screenBottom = p.y;
         p = Camera.main.ScreenToWorldPoint(new Vector3(Camera.main.pixelWidth, Camera.main.pixelHeight, Camera.main.nearClipPlane));
         screenRight = p.x;
         screenTop = p.y;
@@ -46,5 +48,10 @@ public class LevelScript : MonoBehaviour {
     public Vector3 GetBasePosition()
     {
         return playerBase.transform.position;
+    }
+
+    public float GetBottomOfScreen()
+    {
+        return screenBottom;
     }
 }
