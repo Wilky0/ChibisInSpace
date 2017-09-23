@@ -5,13 +5,15 @@ public class MobSpawner : MonoBehaviour {
 	public GameObject MobObject;
     public GameObject LevelController;
     public GameObject playerBase;
+    public GameObject WaterSprite;
 	public int timerReset = 20;
     public float ScreenSideBuffer = 1f;
     public float ScreenTopBuffer = 1f;
     private Vector3 SpawnPos;
     private System.Collections.Generic.List<Vector3> Waypoints;
-	
-	private int currTimer = 0;	
+    private System.Collections.Generic.List<GameObject> toCleanUp;
+
+    private int currTimer = 0;	
 	// Use this for initialization
 	void Start () {
         GeneratePath();
@@ -29,16 +31,20 @@ public class MobSpawner : MonoBehaviour {
             // Gets the playerbase position so it knows where to get to
             Vector3 targetPos = LevelController.GetComponent<LevelScript>().GetBasePosition();
 
+            // Creates the spawn point randomly across the left side of screen
             Vector3 wayPoint = new Vector3(leftBound, Random.Range(topBound, bottomBound), 0f);
             SpawnPos = wayPoint;
             bool inland = true;
             Waypoints = new System.Collections.Generic.List<Vector3>();
 
+
+            // Loop untill at the end of the screen
             while (wayPoint.x < rightBound)
             {
+                // if inland then the next waypoint will be in the x direction
                 if (inland)
                 {
-                    wayPoint = new Vector3(wayPoint.x + Random.Range(0.4f, 4), wayPoint.y, wayPoint.z);
+                    wayPoint = new Vector3(wayPoint.x + Random.Range(0.8f, 4), wayPoint.y, wayPoint.z);
                     if (wayPoint.x > rightBound)
                     {
                         wayPoint.x = rightBound;
@@ -55,12 +61,26 @@ public class MobSpawner : MonoBehaviour {
                     }
                 }
                 inland = !inland;
-
+                // add the new waypoint to a list of waypoints
                 Waypoints.Add(wayPoint);
             }
 
+            // create the player's base at the end of the generated path
             GameObject newBase = Instantiate(playerBase, wayPoint, transform.rotation) as GameObject;
         }
+    }
+
+    public void Strech(GameObject _sprite, Vector3 _initialPosition, Vector3 _finalPosition, bool _mirrorZ)
+    {
+        Vector3 centerPos = (_initialPosition + _finalPosition) / 2f;
+        _sprite.transform.position = centerPos;
+        Vector3 direction = _finalPosition - _initialPosition;
+        direction = Vector3.Normalize(direction);
+        _sprite.transform.right = direction;
+        if (_mirrorZ) _sprite.transform.right *= -1f;
+        Vector3 scale = new Vector3(1, 1, 1);
+        scale.x = Vector3.Distance(_initialPosition, _finalPosition);
+        _sprite.transform.localScale = scale;
     }
 
     public Vector3 GetWaypoint(int idx)
