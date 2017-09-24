@@ -21,10 +21,10 @@ public class mobScript : MonoBehaviour {
         //if(transform.position.y < -6.0f){
         //	Destroy(this.gameObject);
         //}
-        //      if (health <= 0)
-        //      {
-        //          Destroy(this.gameObject);
-        //      }
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
 
         transform.position = Vector3.MoveTowards(transform.position, target, MoveSpeed);
 

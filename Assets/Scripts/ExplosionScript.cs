@@ -26,7 +26,7 @@ public class ExplosionScript : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.name == "Mob(Clone)")
+        if (col.gameObject.GetComponent<mobScript>() != null)
         {
             col.GetComponent<mobScript>().TakeDamage(damage);
         }
