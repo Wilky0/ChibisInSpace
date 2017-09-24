@@ -36,7 +36,8 @@ public class MobSpawner : MonoBehaviour {
             SpawnPos = wayPoint;
             bool inland = true;
             Waypoints = new System.Collections.Generic.List<Vector3>();
-
+            toCleanUp = new System.Collections.Generic.List<GameObject>();
+            Vector3 LastWaypoint;
 
             // Loop untill at the end of the screen
             while (wayPoint.x < rightBound)
@@ -44,7 +45,7 @@ public class MobSpawner : MonoBehaviour {
                 // if inland then the next waypoint will be in the x direction
                 if (inland)
                 {
-                    wayPoint = new Vector3(wayPoint.x + Random.Range(0.8f, 4), wayPoint.y, wayPoint.z);
+                    wayPoint = new Vector3(wayPoint.x + Random.Range(2, 5), wayPoint.y, wayPoint.z);
                     if (wayPoint.x > rightBound)
                     {
                         wayPoint.x = rightBound;
@@ -61,6 +62,20 @@ public class MobSpawner : MonoBehaviour {
                     }
                 }
                 inland = !inland;
+
+                // Draw the water path - will need to be replaced with good looking segments
+                if (Waypoints.Count > 0)
+                {
+                    LastWaypoint = Waypoints[Waypoints.Count - 1];
+                }else
+                {
+                    LastWaypoint = SpawnPos;
+                }
+
+                GameObject path = Instantiate(WaterSprite) as GameObject;
+                Strech(path, LastWaypoint, wayPoint, false);
+                toCleanUp.Add(path);
+
                 // add the new waypoint to a list of waypoints
                 Waypoints.Add(wayPoint);
             }
@@ -78,8 +93,8 @@ public class MobSpawner : MonoBehaviour {
         direction = Vector3.Normalize(direction);
         _sprite.transform.right = direction;
         if (_mirrorZ) _sprite.transform.right *= -1f;
-        Vector3 scale = new Vector3(1, 1, 1);
-        scale.x = Vector3.Distance(_initialPosition, _finalPosition);
+        Vector3 scale = new Vector3(1, 0.2f, 0.2f);
+        scale.x = (Vector3.Distance(_initialPosition, _finalPosition) * 0.20f);
         _sprite.transform.localScale = scale;
     }
 

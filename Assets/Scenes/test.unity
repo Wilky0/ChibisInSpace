@@ -413,7 +413,8 @@ MonoBehaviour:
   MobObject: {fileID: 121476, guid: d4fe6fc995d297648bb6a5e5d72295c3, type: 2}
   LevelController: {fileID: 1473531676}
   playerBase: {fileID: 1769041125853554, guid: 0f5ac663777d38341a6e9bde58f0ff34, type: 2}
-  WaterSprite: {fileID: 0}
+  WaterSprite: {fileID: 1719358946506614, guid: 6be6ec51ea6fc5c48aac94d7f590a8d6,
+    type: 2}
   timerReset: 100
   ScreenSideBuffer: 1
   ScreenTopBuffer: 1
