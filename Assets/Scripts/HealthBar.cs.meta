@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a59fc1289528e544e91447b73e5daf4a
+timeCreated: 1533736274
+licenseType: Free
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bgTex: {fileID: 10910, guid: 0000000000000000f000000000000000, type: 0}
+  - barTex: {fileID: 10906, guid: 0000000000000000f000000000000000, type: 0}
+  - tstSprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

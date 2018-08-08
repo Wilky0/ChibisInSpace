@@ -5,10 +5,12 @@ using UnityEngine;
 public class PlayerBaseScript : MonoBehaviour {
     public int health = 50;
     public GameObject LevelController;
+    HealthBar healthBar;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        healthBar = new HealthBar(this.gameObject, health);
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
