@@ -3,10 +3,12 @@ using System.Collections;
 
 public class mobScript : MonoBehaviour {
 	public float MoveSpeed = 0.05f;
-    private int health = 1;
+    private int health = 10;
     private MobSpawner spawner;
     private Vector3 target;
     private int targetIdx = 0;
+    private HealthBar healthBar;
+
 	// Use this for initialization
 	void Start () {
         if (spawner != null)
@@ -50,6 +52,14 @@ public class mobScript : MonoBehaviour {
 
     public void TakeDamage ( int damage )
     {
+        if (healthBar == null)
+        {
+            healthBar = new HealthBar(this.gameObject, health);
+        }
+
         health -= damage;
+
+        healthBar.SetHealth(health);
+
     }
 }

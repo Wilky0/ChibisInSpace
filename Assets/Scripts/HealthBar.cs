@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBar : MonoBehaviour {
+public class HealthBar {
 
-    private static int maxHealth, health;
-    private static GameObject barBackground, bar, barSize;
-    private static GameObject parent;
+    private int maxHealth, health;
+    private GameObject barBackground, bar, barSize;
+    private GameObject parent;
 
     //constructor
     public HealthBar (GameObject newParent, int newMaxHealth, int newHealth = 0)
