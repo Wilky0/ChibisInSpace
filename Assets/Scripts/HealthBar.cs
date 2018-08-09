@@ -5,10 +5,8 @@ using UnityEngine;
 public class HealthBar : MonoBehaviour {
 
     private static int maxHealth, health;
-    private static GameObject barBackground, bar;
+    private static GameObject barBackground, bar, barSize;
     private static GameObject parent;
-    public Texture2D bgTex, barTex;
-    public Sprite tstSprite;
 
     //constructor
     public HealthBar (GameObject newParent, int newMaxHealth, int newHealth = 0)
@@ -28,9 +26,9 @@ public class HealthBar : MonoBehaviour {
     }
 
     // Use this for initialization
-    void Start () {
-		
-	}
+    void Start () { 
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -39,13 +37,25 @@ public class HealthBar : MonoBehaviour {
 
     void SpawnBar ()
     {
+        Sprite loadSprite = Resources.Load<Sprite>("HealthBarBackground2");
         barBackground = new GameObject("HealthBarBackground");
+        barBackground.transform.position = new Vector3(parent.transform.position.x, parent.transform.position.y + 1, parent.transform.position.z);
         barBackground.transform.parent = parent.transform;
         SpriteRenderer spriteRend = barBackground.AddComponent<SpriteRenderer>();
 
-        //Sprite newSprite = Sprite.Create(bgTex, new Rect(0f, 0f, bgTex.width, bgTex.height), new Vector2(0.5f, 0.5f));
-        //newSprite.Create(bgTex, new Rect(0f, 0f, bgTex.width, bgTex.height), new Vector2(0.5f, 0.5f), 128f);
+        spriteRend.sprite = loadSprite;
+        spriteRend.sortingOrder = -1;
 
-        spriteRend.sprite = tstSprite;
+        barSize = new GameObject("HealthBarSizer");
+        barSize.transform.position = new Vector3(barBackground.transform.position.x - (barBackground.GetComponent<SpriteRenderer>().bounds.size.x / 2), barBackground.transform.position.y, barBackground.transform.position.z);
+        barSize.transform.parent = barBackground.transform;
+
+        loadSprite = Resources.Load<Sprite>("HealthBar2");
+        bar = new GameObject("HealthBar");
+        bar.transform.position = barBackground.transform.position;
+        bar.transform.parent = barSize.transform;
+        spriteRend = bar.AddComponent<SpriteRenderer>();
+
+        spriteRend.sprite = loadSprite;
     }
 }
