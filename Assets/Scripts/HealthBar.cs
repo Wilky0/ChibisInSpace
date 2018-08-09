@@ -35,6 +35,28 @@ public class HealthBar : MonoBehaviour {
 		
 	}
 
+    public void SetHealth(int newHealth)
+    {
+        if (newHealth <= maxHealth)
+        {
+            health = newHealth;
+        }
+        else
+        {
+            health = maxHealth;
+        }
+
+
+        UpdateBarSize();
+    }
+
+    void UpdateBarSize()
+    {
+        float healthPer = (health / (float)maxHealth);
+
+        barSize.transform.localScale = new Vector3(healthPer, barSize.transform.localScale.y, barSize.transform.localScale.z);
+    }
+
     void SpawnBar ()
     {
         Sprite loadSprite = Resources.Load<Sprite>("HealthBarBackground2");

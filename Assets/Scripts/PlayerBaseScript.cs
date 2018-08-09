@@ -36,6 +36,7 @@ public class PlayerBaseScript : MonoBehaviour {
         {
             Destroy(col.gameObject);
             health--;
+            healthBar.SetHealth(health);
         }
     }
 }
